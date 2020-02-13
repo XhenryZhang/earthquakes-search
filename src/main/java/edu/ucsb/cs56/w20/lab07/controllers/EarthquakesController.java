@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import edu.ucsb.cs56.w20.lab07.formbeans.EqSearch;
+import edu.ucsb.cs56.w20.lab07.services.EarthquakeQueryService;
 
 @Controller
 public class EarthquakesController {
@@ -20,8 +21,11 @@ public class EarthquakesController {
     @GetMapping("/earthquakes/results")
     public String getEarthquakesResults(Model model, OAuth2AuthenticationToken oAuth2AuthenticationToken,
             EqSearch eqSearch) {
+            
+        EarthquakeQueryService e = new EarthquakeQueryService();
         model.addAttribute("eqSearch", eqSearch);
-        // TODO: Actually do the search here and add results to the model
+        String json = e.getJSON(eqSearch.getDistance(), eqSearch.getMinmag());
+        model.addAttribute("json", json);
         return "earthquakes/results";
     }
    
