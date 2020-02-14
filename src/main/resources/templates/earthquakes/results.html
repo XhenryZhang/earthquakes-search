@@ -23,6 +23,8 @@
     <thead>
         <tr>
             <th>Type</th>
+            <th>Url</th>
+            <th>Count</th>
         </tr>
     </thead>
     <tbody>
@@ -30,6 +32,9 @@
             <!-- referencing feature collection, which was added to model (model.addattribute) by EarthquakesController.java-->
             <!-- everything here is done in @Getmapping earthquakes/results method in EarthquakesController-->
             <td th:text="${featureCollection.type}"></td>
+            <td th:text="${featureCollection.metadata.url}"></td>
+            <td th:text="${featureCollection.metadata.count}"></td>
+            
         </tr>
     </tbody>
 </table>
