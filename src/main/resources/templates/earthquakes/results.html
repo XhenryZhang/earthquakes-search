@@ -51,9 +51,9 @@
     </thead>
     <tbody>
     
-        <!-- for each loop sets up f as a variable that loops over the features list -->
+        <!-- for each loop sets up f as a variable that loops over the features list each feature is an earthquake-->
         <tr th:each="f: ${featureCollection.features}"> 
-            <td th:text="${f.id}"></td>
+            <td><a th:href="${f.properties.url}" th:text="${f.id}"></a></td>
             <td th:text="${f.properties.place}"></td>
             <td th:text="${f.properties.mag}"></td>
         </tr>

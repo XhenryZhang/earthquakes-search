@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
 public class FeatureCollection {
     public String type;
     public Metadata metadata;
-    public List<Feature> features;
+    public List<Feature> features; // after meta data, list of features
     private static Logger logger = LoggerFactory.getLogger(FeatureCollection.class);
     
      /**
