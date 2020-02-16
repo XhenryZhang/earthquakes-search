@@ -7,22 +7,30 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import edu.ucsb.cs56.w20.lab07.formbeans.EqSearch;
+import edu.ucsb.cs56.w20.lab07.services.EarthquakeQueryService;
+import geojson.FeatureCollection;
 
 @Controller
-<span class="nc" id="L12">public class EarthquakesController {</span>
+<span class="nc" id="L14">public class EarthquakesController {</span>
     
     @GetMapping(&quot;/earthquakes/search&quot;)
     public String getEarthquakesSearch(Model model, OAuth2AuthenticationToken oAuth2AuthenticationToken,
             EqSearch eqSearch) {
-<span class="nc" id="L17">        return &quot;earthquakes/search&quot;;        </span>
+<span class="nc" id="L19">        return &quot;earthquakes/search&quot;;        </span>
     }
     
     @GetMapping(&quot;/earthquakes/results&quot;)
     public String getEarthquakesResults(Model model, OAuth2AuthenticationToken oAuth2AuthenticationToken,
             EqSearch eqSearch) {
-<span class="nc" id="L23">        model.addAttribute(&quot;eqSearch&quot;, eqSearch);</span>
-        // TODO: Actually do the search here and add results to the model
-<span class="nc" id="L25">        return &quot;earthquakes/results&quot;;</span>
+            
+<span class="nc" id="L26">        EarthquakeQueryService e = new EarthquakeQueryService();</span>
+<span class="nc" id="L27">        model.addAttribute(&quot;eqSearch&quot;, eqSearch);</span>
+<span class="nc" id="L28">        String json = e.getJSON(eqSearch.getDistance(), eqSearch.getMinmag());</span>
+<span class="nc" id="L29">        model.addAttribute(&quot;json&quot;, json);</span>
+
+<span class="nc" id="L31">        FeatureCollection featureCollection = FeatureCollection.fromJSON(json);</span>
+<span class="nc" id="L32">        model.addAttribute(&quot;featureCollection&quot;, featureCollection);</span>
+<span class="nc" id="L33">        return &quot;earthquakes/results&quot;;</span>
     }
    
 }
