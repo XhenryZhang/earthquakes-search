@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import edu.ucsb.cs56.w20.lab07.formbeans.EqSearch;
 import edu.ucsb.cs56.w20.lab07.services.EarthquakeQueryService;
+import geojson.FeatureCollection;
 
 @Controller
 public class EarthquakesController {
@@ -26,6 +27,9 @@ public class EarthquakesController {
         model.addAttribute("eqSearch", eqSearch);
         String json = e.getJSON(eqSearch.getDistance(), eqSearch.getMinmag());
         model.addAttribute("json", json);
+
+        FeatureCollection featureCollection = FeatureCollection.fromJSON(json);
+        model.addAttribute("featureCollection", featureCollection);
         return "earthquakes/results";
     }
    
