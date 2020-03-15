@@ -1,0 +1,45 @@
+<h1> Results </h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Count</th>
+            <th>Distance (km)</th>
+            <th>Minimum Magnitude</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <!-- referencing feature collection, which was added to model (model.addattribute) by EarthquakesController.java-->
+            <!-- everything here is done in @Getmapping earthquakes/results method in EarthquakesController-->
+            <td><a th:href="${featureCollection.metadata.url}" th:text="${featureCollection.metadata.title}"></a></td>
+            <td th:text="${featureCollection.metadata.count}"></td>
+            <td th:text="${eqSearch.distance}"></td>
+            <td th:text="${eqSearch.minmag}"></td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Earthquakes</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>place</th>
+            <th>mag</th>
+        </tr>
+    </thead>
+    <tbody>
+    
+        <!-- for each loop sets up f as a variable that loops over the features list each feature is an earthquake-->
+        <tr th:each="f: ${featureCollection.features}"> 
+            <td><a th:href="${f.properties.url}" th:text="${f.id}"></a></td>
+            <td th:text="${f.properties.place}"></td>
+            <td th:text="${f.properties.mag}"></td>
+        </tr>
+    </tbody>
+</table>
+
+
+<div th:replace="bootstrap/bootstrap_footer.html"></div>
