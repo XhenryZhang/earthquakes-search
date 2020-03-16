@@ -12,6 +12,7 @@ import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
+import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 
 import edu.ucsb.cs56.w20.lab07.repositories.AdminRepository;
 
