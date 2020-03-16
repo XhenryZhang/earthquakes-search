@@ -1,0 +1,15 @@
+<h1>Location Search</h1>
+
+<form action="#" th:action="@{/locations/results}" th:object="${locSearch}" method="get">
+  <table>
+    <tr class="form-group">
+      <th><label for="roflxd" class="col-form-label">Location</label></th>
+      <td><input type="text" th:field="*{location}" class="form-control" id="roflxd"></td>
+      <!--th:field specifies where the user input should be stored in-->
+    </tr>
+  </table>
+
+  <input type="submit" class="btn btn-primary" value="Search">
+</form>
+
+<!--form sends to locations/results, relies on thymeleaf locsearch object called locSearch-->

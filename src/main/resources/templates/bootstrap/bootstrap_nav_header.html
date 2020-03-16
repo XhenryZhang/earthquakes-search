@@ -8,14 +8,13 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item">
-                <a class="nav-link" href="/earthquakes/search">
-                    Earthquake Search
-                </a>
+                <a class="nav-link" href="/earthquakes/search" id="navbarDropdown" role="button">Earthquake Search</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/locations/search" id="navbarDropdown" role="button">Locations</a>
             </li>
             <li th:if="${isAdmin}" class="nav-item ">
-                <a class="nav-link" href="/users" id="navbarDropdown" role="button">
-                    Users
-                </a>
+                <a class="nav-link" href="/users" id="navbarDropdown" role="button">Users</a>
             </li>
             <li th:if="${isAdmin}" class="nav-item ">
                 <a class="nav-link" href="/admin" id="navbarDropdown" role="button">
