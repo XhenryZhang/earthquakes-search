@@ -46,4 +46,20 @@ public class HomePageTest {
                 .andExpect(xpath("//title").exists())
                 .andExpect(xpath("//title").string("lab07-CS56"));
     }
+
+    @Test
+    public void getHomePage_hasLocationsLink() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/").accept(MediaType.TEXT_HTML))
+        .andExpect(status().isOk())
+        .andExpect(xpath("/html/body/div/nav/div/ul[1]/li[2]/a").exists())
+        .andExpect(xpath("/html/body/div/nav/div/ul[1]/li[2]/a").string("Locations"));
+    }
+
+    @Test
+    public void getHomePage_hasEqLink() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/").accept(MediaType.TEXT_HTML))
+        .andExpect(status().isOk())
+        .andExpect(xpath("/html/body/div/nav/div/ul[1]/li[1]/a").exists())
+        .andExpect(xpath("/html/body/div/nav/div/ul[1]/li[1]/a").string("Earthquake Search"));
+    }
 }
