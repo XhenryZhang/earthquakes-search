@@ -39,6 +39,7 @@ public class EarthquakeQueryService {
         logger.info("url=" + url);
 
         String retVal="";
+        
         try {
             ResponseEntity<String> re = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
              MediaType contentType = re.getHeaders().getContentType();

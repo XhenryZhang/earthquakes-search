@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import edu.ucsb.cs56.w20.lab07.formbeans.LocSearch;
-import edu.ucsb.cs56.w20.lab07.services.EarthquakeQueryService;
+import edu.ucsb.cs56.w20.lab07.services.LocationQueryService;
 import geojson.FeatureCollection;
 
 @Controller
@@ -22,7 +22,12 @@ public class LocationsController {
     @GetMapping("/locations/results")
     public String getLocationsResults(Model model, OAuth2AuthenticationToken oAuth2AuthenticationToken,
             LocSearch blabla) {
+
+        LocationQueryService e = new LocationQueryService(); // gets from formbeans class and gets json from the location, forming a url
         model.addAttribute("xdd", blabla);
+
+        String json = e.getJSON(blabla.getLocation());
+        model.addAttribute("json", json);
         // TODO: Actually do the search here and add results to the model
         return "locations/results";
     }
