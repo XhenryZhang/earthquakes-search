@@ -1,14 +1,53 @@
-<h1>Location Search Results</h1>
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 
-<table>
-    <tr>
-        <th>Location</th>
-        <td th:text="${xdd.location}"></td>
-        <!--xdd is the name of the attribute name added to model-->
-    </tr>
-</table>
+<head>
+  <div th:replace="bootstrap/title.html"></div>
+  <div th:replace="bootstrap/bootstrap_head.html"></div>
+</head>
 
-<h2>JSON Results</h2>
+<body>
+    <div class="container">
+        <div th:replace="bootstrap/bootstrap_nav_header.html"></div>
+        <h1>Location Search Results</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Location</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td th:text="${xdd.location}"></td>
+                    <!--xdd is the name of the attribute name added to model-->
+                </tr>
+            </tbody>
+        </table>
 
-<pre th:text="${json}">This is placeholder</pre>
-<!--preformatted text, doesn't ignore spaces, etc.-->
+        <h2>Search Results</h2>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Place Identitiy</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                    <th>Display Name</th>
+                    <th>Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="loc: ${places}"> 
+                    <td th:text="${loc.place_id}"></td>
+                    <td th:text="${loc.lat}"></td>
+                    <td th:text="${loc.lon}"></td>
+                    <td th:text="${loc.display_name}"></td>
+                    <td th:text="${loc.type}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <div th:replace="bootstrap/bootstrap_footer.html"></div>
+    </div>
+    <div th:replace="bootstrap/bootstrap_scripts.html"></div>
+</body>
+</html>

@@ -40,13 +40,9 @@ public class LocationQueryService {
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         HttpEntity<String> entity = new HttpEntity<>("body", headers);
-
         String uri = "https://nominatim.openstreetmap.org/search?q="; // + doesn't work with /search/ format, so we switched to a format it was compatible with
-
         String locParam = encodeValue(location);
-
         String url = uri + locParam + "&format=json"; // forms the url for the web api call, based on api documentation
-        
         logger.info("url=" + url);
 
         String retVal = "";

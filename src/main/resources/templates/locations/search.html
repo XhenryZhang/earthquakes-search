@@ -1,15 +1,30 @@
-<h1>Location Search</h1>
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 
-<form action="#" th:action="@{/locations/results}" th:object="${locSearch}" method="get">
-  <table>
-    <tr class="form-group">
-      <th><label for="roflxd" class="col-form-label">Location</label></th>
-      <td><input type="text" th:field="*{location}" class="form-control" id="roflxd"></td>
-      <!--th:field specifies where the user input should be stored in-->
-    </tr>
-  </table>
+<head>
+  <div th:replace="bootstrap/title.html"></div>
+  <div th:replace="bootstrap/bootstrap_head.html"></div>
+</head>
 
-  <input type="submit" class="btn btn-primary" value="Search">
-</form>
+<body>
+  <div class="container">
+    <div th:replace="bootstrap/bootstrap_nav_header.html"></div>
+    <h1>Location Search</h1>
+    <form action="#" th:action="@{/locations/results}" th:object="${locSearch}" method="get">
+      <table>
+        <tr class="form-group">
+          <th><label for="roflxd" class="col-form-label">Location</label></th>
+          <td><input type="text" th:field="*{location}" class="form-control" id="roflxd"></td>
+          <!--th:field specifies where the user input should be stored in-->
+        </tr>
+      </table>
+
+      <input type="submit" class="btn btn-primary" value="Search">
+      <div th:replace="bootstrap/bootstrap_footer.html"></div>
+    </form>
+  </div>
+  <div th:replace="bootstrap/bootstrap_scripts.html"></div>
+</body>
+</html>
 
 <!--form sends to locations/results, relies on thymeleaf locsearch object called locSearch-->

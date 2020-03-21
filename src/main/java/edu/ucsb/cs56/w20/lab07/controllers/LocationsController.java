@@ -6,9 +6,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.List;
 import edu.ucsb.cs56.w20.lab07.formbeans.LocSearch;
 import edu.ucsb.cs56.w20.lab07.services.LocationQueryService;
 import geojson.FeatureCollection;
+import osm.Place;
 
 @Controller
 public class LocationsController {
@@ -25,10 +27,12 @@ public class LocationsController {
 
         LocationQueryService e = new LocationQueryService(); // gets from formbeans class and gets json from the location, forming a url
         model.addAttribute("xdd", blabla);
-
         String json = e.getJSON(blabla.getLocation());
         model.addAttribute("json", json);
+
         // TODO: Actually do the search here and add results to the model
+        List<Place> placeList = Place.listFromJson(json);
+        model.addAttribute("places", placeList);
         return "locations/results";
     }
    
