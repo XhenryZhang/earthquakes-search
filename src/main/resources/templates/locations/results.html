@@ -19,7 +19,7 @@
             <tbody>
                 <tr>
                     <td th:text="${xdd.location}"></td>
-                    <!--xdd is the name of the attribute name added to model-->
+                    <!--xdd is the name of the attribute name added to model, in this case, its the location formbean-->
                 </tr>
             </tbody>
         </table>
@@ -34,6 +34,7 @@
                     <th>Longitude</th>
                     <th>Display Name</th>
                     <th>Type</th>
+                    <th>Get Earthquakes</th>
                 </tr>
             </thead>
             <tbody>
@@ -43,6 +44,7 @@
                     <td th:text="${loc.lon}"></td>
                     <td th:text="${loc.display_name}"></td>
                     <td th:text="${loc.type}"></td>
+                    <td><a th:href="@{/earthquakes/search/(lat=${loc.lat},lon=${loc.lon},location=${loc.display_name})}">Get Earthquakes</a></td>
                 </tr>
             </tbody>
         </table>

@@ -20,12 +20,13 @@ public class EarthquakesController {
     }
     
     @GetMapping("/earthquakes/results")
+    // when this request is processed, (from nav-bar heading, href tag), the following is run
     public String getEarthquakesResults(Model model, OAuth2AuthenticationToken oAuth2AuthenticationToken,
             EqSearch eqSearch) {
             
         EarthquakeQueryService e = new EarthquakeQueryService();
         model.addAttribute("eqSearch", eqSearch);
-        String json = e.getJSON(eqSearch.getDistance(), eqSearch.getMinmag());
+        String json = e.getJSON(eqSearch.getDistance(), eqSearch.getMinmag(), eqSearch.getLat(), eqSearch.getLon());
         model.addAttribute("json", json);
 
         FeatureCollection featureCollection = FeatureCollection.fromJSON(json);
