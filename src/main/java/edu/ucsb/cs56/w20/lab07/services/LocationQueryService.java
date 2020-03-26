@@ -47,6 +47,7 @@ public class LocationQueryService {
 
         String retVal = "";
         
+        // this makes the query and gets the json from the query
         try {
             ResponseEntity<String> re = template.exchange(url, HttpMethod.GET, entity, String.class); // makes response
             MediaType contentType = re.getHeaders().getContentType();
