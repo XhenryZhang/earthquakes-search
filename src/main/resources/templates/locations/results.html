@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head>
+  <title>Search Results</title>
   <div th:replace="bootstrap/title.html"></div>
   <div th:replace="bootstrap/bootstrap_head.html"></div>
 </head>
@@ -45,6 +46,7 @@
                     <td th:text="${loc.display_name}"></td>
                     <td th:text="${loc.type}"></td>
                     <td><a th:href="@{/earthquakes/search/(lat=${loc.lat},lon=${loc.lon},location=${loc.display_name})}">Get Earthquakes</a></td>
+                    <!--href links to search form with elements filled in already-->
                 </tr>
             </tbody>
         </table>
