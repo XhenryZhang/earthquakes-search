@@ -13,7 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Place {
-    public String type; // name must match json titles
+    public String type; // names public variables must match json titles
     public long place_id;
     public double lat;
     public double lon;

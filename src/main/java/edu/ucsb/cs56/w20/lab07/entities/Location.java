@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long id; // used by website
 
     private long placeId; // name must match getter and setters
     private String name;

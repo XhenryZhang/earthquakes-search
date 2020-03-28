@@ -3,7 +3,6 @@
 
 <head>
   <title>Search Location</title>
-  <div th:replace="bootstrap/title.html"></div>
   <div th:replace="bootstrap/bootstrap_head.html"></div>
 </head>
 
@@ -11,19 +10,23 @@
   <div class="container">
     <div th:replace="bootstrap/bootstrap_nav_header.html"></div>
     <h1>Location Search</h1>
+    <!--a new locSearch object will be made-->
     <form action="#" th:action="@{/locations/results}" th:object="${locSearch}" method="get">
       <table>
         <tr class="form-group">
           <th><label for="roflxd" class="col-form-label">Location</label></th>
           <td><input type="text" th:field="*{location}" class="form-control" id="roflxd"></td>
           <!--th:field specifies where the user input should be stored in-->
-          <!--the user input stored in location in the formbean object-->
+          <!--doesn't have a default value, unlike the fields in index.html-->
+          <!--the user input stored in location variable in the new formbean object-->
         </tr>
       </table>
 
       <input type="submit" class="btn btn-primary" value="Search">
-      <div th:replace="bootstrap/bootstrap_footer.html"></div>
+      <!--value parameter is what the button says-->
+      <!--the button type=submit submits the form, calling the thyme leaf action-->
     </form>
+    <div th:replace="bootstrap/bootstrap_footer.html"></div>
   </div>
   <div th:replace="bootstrap/bootstrap_scripts.html"></div>
 </body>
