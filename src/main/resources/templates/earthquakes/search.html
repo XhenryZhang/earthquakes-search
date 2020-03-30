@@ -32,7 +32,7 @@
         </tr>
         <tr class="form-group">
           <th><label for="loc" class="col-form-label">Location</label></th>
-          <td><input type="text" th:field="*{location}" class="form-control" id="loc"></td>
+          <td th:text="${eqSearch.location}" th:field="*{location}" id="loc"></td>
         </tr>
       </table>
 

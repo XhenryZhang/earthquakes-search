@@ -2,7 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <title>Favorite Locations</title>
-    <div th:replace="bootstrap/title.html"></div>
     <div th:replace="bootstrap/bootstrap_head.html"></div>
 </head>
 
@@ -19,6 +18,8 @@
                     <th>name</th>
                     <th>latitude</th>
                     <th>longitude</th>
+                    <th>Get Earthquakes</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
 
@@ -29,7 +30,12 @@
                     <td th:text="${favLoc.name}"></td>
                     <td th:text="${favLoc.latitude}"></td>
                     <td th:text="${favLoc.longitude}"></td>
-
+                    <td><a th:href="@{/earthquakes/search/(lat=${favLoc.latitude},lon=${favLoc.longitude},location=${favLoc.name})}">Get Earthquakes</a></td>
+                    <td>
+                        <form th:method="delete" th:action="@{/locations/delete/} + ${favLoc.id}">
+                            <input type="submit" class="btn btn-danger" value="Delete"/>
+                        </form>
+                    </td>
                 </tr>
             </tbody>
         </table>

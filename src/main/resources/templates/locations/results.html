@@ -3,7 +3,6 @@
 
 <head>
   <title>Search Results</title>
-  <div th:replace="bootstrap/title.html"></div>
   <div th:replace="bootstrap/bootstrap_head.html"></div>
 </head>
 
@@ -36,16 +35,30 @@
                     <th>Display Name</th>
                     <th>Type</th>
                     <th>Get Earthquakes</th>
+                    <th>Add to Favorites</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="loc: ${places}"> 
+                <tr th:each="loc: ${places}">
+                    <!--loc iterates over the places list model attribute when get request is made-->
                     <td th:text="${loc.place_id}"></td>
                     <td th:text="${loc.lat}"></td>
                     <td th:text="${loc.lon}"></td>
                     <td th:text="${loc.display_name}"></td>
                     <td th:text="${loc.type}"></td>
                     <td><a th:href="@{/earthquakes/search/(lat=${loc.lat},lon=${loc.lon},location=${loc.display_name})}">Get Earthquakes</a></td>
+                    <!--links directly to search results page for earthquakes with the query elements-->
+                    <td>
+                        <form action="#" th:action="@{/locations/add}" th:object="${location}" method="POST">
+                            <!--the th:object here is the creates a new location object-->
+                            <input type="hidden" name="placeId" th:value="${loc.place_id}" value=""/>
+                            <input type="hidden" name="name" th:value="${loc.display_name}" value=""/>
+                            <input type="hidden" name="latitude" th:value="${loc.lat}" value=""/>
+                            <input type="hidden" name="longitude" th:value="${loc.lon}" value=""/>
+                            <input type="submit" class="btn btn-primary" value="Add" />
+                            <!--adds traits to the location object we will make-->
+                        </form>
+                    </td>
                     <!--href links to search form with elements filled in already-->
                 </tr>
             </tbody>
