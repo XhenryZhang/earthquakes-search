@@ -5,8 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -14,7 +17,6 @@ import edu.ucsb.cs56.w20.lab07.entities.Location;
 import edu.ucsb.cs56.w20.lab07.formbeans.LocSearch;
 import edu.ucsb.cs56.w20.lab07.repositories.LocationRepository;
 import edu.ucsb.cs56.w20.lab07.services.LocationQueryService;
-import geojson.FeatureCollection;
 import osm.Place;
 
 @Controller
@@ -54,10 +56,26 @@ public class LocationsController {
     }
 
     @PostMapping("/locations/add")
-    public String add(Location location, Model model) {
+    public String add(Location location, Model model, RedirectAttributes red) {
         // location comes from the form submit
-        locationRepository.save(location); // adds a new location
-        model.addAttribute("locations", locationRepository.findAll()); // add all locations to model, updates
+        if (!locationRepository.findByPlaceId(location.getPlaceId()).isEmpty()) {
+            // duplicate location
+            red.addFlashAttribute("alertDanger", "That location already exists on the Favorites list.");
+            model.addAttribute("locations", locationRepository.findAll());
+            return "redirect:/locations";
+        }else {
+            locationRepository.save(location); // adds a new location
+            model.addAttribute("locations", locationRepository.findAll()); // add all locations to model, updates
+            return "locations/index";
+        }
+    }
+
+    @PostMapping("/locations/delete/{id}")
+    public String delete(@PathVariable("id") long id, Model model) {
+        Location location = locationRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid Location Id:" + id));
+        locationRepository.delete(location);
+        model.addAttribute("locations", locationRepository.findAll());
         return "locations/index";
     }
 }

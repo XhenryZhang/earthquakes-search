@@ -50,7 +50,6 @@ public class Location {
         return id;
     }
 
-    // error likely here
     public long getPlaceId() {
         return placeId;
     }
