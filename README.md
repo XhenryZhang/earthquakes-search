@@ -1,5 +1,5 @@
-# cs56 w20 lab07
 # Henry Zhang - 3/15/2020
+# A web application that fetches Earthquake data from the USGS earthquake database and presents them in a formatted table based on a user's search query.
 
 Github ID: xhenryzhang
 
